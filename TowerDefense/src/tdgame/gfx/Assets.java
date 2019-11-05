@@ -1,4 +1,4 @@
-package gfx;
+package tdgame.gfx;
 
 import java.awt.image.BufferedImage;
 

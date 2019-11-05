@@ -1,4 +1,5 @@
-package dev.codenmore.tilegame;
+package tdgame;
+
 
 
 public class Launcher {

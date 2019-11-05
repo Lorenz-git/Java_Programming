@@ -1,10 +1,13 @@
-package dev.codenmore.tilegame;
+package tdgame;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
-import dev.codenmore.tilegame.display.Display;
-import dev.codenmore.tilegame.gfx.Assets;
+import tdgame.display.Display;
+import tdgame.gfx.Assets;
+import tdgame.states.GameState;
+import tdgame.states.MenuState;
+import tdgame.states.State;
 
 public class Game implements Runnable {
 
@@ -18,6 +21,10 @@ public class Game implements Runnable {
 	private BufferStrategy bs;
 	private Graphics g;
 	
+	//States
+	private State gameState;
+	private State menuState;
+	
 	public Game(String title, int width, int height){
 		this.width = width;
 		this.height = height;
@@ -27,12 +34,19 @@ public class Game implements Runnable {
 	private void init(){
 		display = new Display(title, width, height);
 		Assets.init();
+		
+		//States
+		gameState = new GameState();
+		menuState = new MenuState();
+		State.setState(gameState);
 	}
 	
-	int x = 0;
 	
 	private void tick(){
-		x += 1;
+
+		if(State.getState()!=null) {
+			State.getState().tick();
+		}
 	}
 	
 	private void render(){
@@ -46,7 +60,9 @@ public class Game implements Runnable {
 		g.clearRect(0, 0, width, height);
 		//Draw Here!
 		
-		g.drawImage(Assets.grass, x, 10, null);
+		if(State.getState()!=null) {
+			State.getState().render(g);
+		}
 		
 		//End Drawing!
 		bs.show();
