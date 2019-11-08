@@ -2,15 +2,17 @@ package tdgame.states;
 
 import java.awt.Graphics;
 
-import tdgame.tiles.Tile;
+import tdgame.Handler;
 import tdgame.worlds.World;
 
 public class GameState extends State{
 	
 	private World world;
 
-	public GameState() {
-		world = new World("");
+	public GameState(Handler handler) {
+		super(handler);
+		world = new World(handler, "");
+		handler.setWorld(world);
 	}
 	
 	public void tick() {

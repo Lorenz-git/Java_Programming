@@ -2,9 +2,12 @@ package tdgame.states;
 
 import java.awt.Graphics;
 
+import tdgame.Handler;
+
 public class MenuState extends State{
 
-	public MenuState() {
+	public MenuState(Handler handler) {
+		super(handler);
 		
 	}
 	

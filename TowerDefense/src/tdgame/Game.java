@@ -5,6 +5,8 @@ import java.awt.image.BufferStrategy;
 
 import tdgame.display.Display;
 import tdgame.gfx.Assets;
+import tdgame.input.KeyManager;
+import tdgame.input.MouseManager;
 import tdgame.states.GameState;
 import tdgame.states.MenuState;
 import tdgame.states.State;
@@ -21,27 +23,62 @@ public class Game implements Runnable {
 	private BufferStrategy bs;
 	private Graphics g;
 	
+	//Input
+	private KeyManager keyManager;
+	private MouseManager mouseManager;
+	
 	//States
-	private State gameState;
-	private State menuState;
+	public State gameState;
+	public State menuState;
+	
+	private Handler handler;
 	
 	public Game(String title, int width, int height){
 		this.width = width;
 		this.height = height;
 		this.title = title;
+		keyManager = new KeyManager();
+		mouseManager = new MouseManager();
 	}
 	
 	private void init(){
 		display = new Display(title, width, height);
+		
+		display.getFrame().addKeyListener(keyManager);
+		//display.getCanvas().addKeyListener(keyManager);
+		
+		display.getFrame().addMouseListener(mouseManager);
+		display.getFrame().addMouseMotionListener(mouseManager);
+		//display.getCanvas().addMouseListener(mouseManager);
+		//display.getCanvas().addMouseMotionListener(mouseManager);
+		
 		Assets.init();
 		
+		handler = new Handler(this);
+		
 		//States
-		gameState = new GameState();
-		menuState = new MenuState();
+		gameState = new GameState(handler);
+		menuState = new MenuState(handler);
 		State.setState(gameState);
 	}
 	
 	
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
 	private void tick(){
 
 		if(State.getState()!=null) {
@@ -103,6 +140,10 @@ public class Game implements Runnable {
 		
 		stop();
 		
+	}
+	
+	public MouseManager getMouseManager() {
+		return mouseManager;
 	}
 	
 	public synchronized void start(){

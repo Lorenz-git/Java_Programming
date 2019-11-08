@@ -1,14 +1,18 @@
 package tdgame.worlds;
 
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
 
+import tdgame.Handler;
 import tdgame.tiles.Tile;
 
 public class World {
+	private Handler handler;
 	private int height, width;
 	private int[][] worldTiles;
 	
-	public World(String path) {
+	public World(Handler handler, String path) {
+		this.handler = handler;
 		loadWorld(path);
 	}
 	
@@ -27,7 +31,7 @@ public class World {
 	public Tile getTile(int x, int y) {
 		Tile t = Tile.tiles[worldTiles[x][y]];
 		if(t==null) {
-			return Tile.grassTile;
+			return Tile.emptyTile;
 		}
 		return t;
 		
@@ -40,9 +44,13 @@ public class World {
 		
 		for(int x = 0; x < width; ++x) {
 			for(int y = 0; y < height; ++y) {
-				worldTiles[x][y] = 0;
+				worldTiles[x][y] = 3;
 			}
 		}
+	}
+	
+	public void placeTile(MouseEvent e) {
+		
 	}
 	
 	
