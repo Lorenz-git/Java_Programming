@@ -45,12 +45,12 @@ public class Game implements Runnable {
 		display = new Display(title, width, height);
 		
 		display.getFrame().addKeyListener(keyManager);
-		//display.getCanvas().addKeyListener(keyManager);
+		display.getCanvas().addKeyListener(keyManager);
 		
 		display.getFrame().addMouseListener(mouseManager);
 		display.getFrame().addMouseMotionListener(mouseManager);
-		//display.getCanvas().addMouseListener(mouseManager);
-		//display.getCanvas().addMouseMotionListener(mouseManager);
+		display.getCanvas().addMouseListener(mouseManager);
+		display.getCanvas().addMouseMotionListener(mouseManager);
 		
 		Assets.init();
 		
@@ -77,6 +77,14 @@ public class Game implements Runnable {
 
 	public void setHeight(int height) {
 		this.height = height;
+	}
+	
+	public MouseManager getMouseManager() {
+		return mouseManager;
+	}
+	
+	public KeyManager getKeyManager() {
+		return keyManager;
 	}
 
 	private void tick(){
@@ -142,9 +150,7 @@ public class Game implements Runnable {
 		
 	}
 	
-	public MouseManager getMouseManager() {
-		return mouseManager;
-	}
+	
 	
 	public synchronized void start(){
 		if(running)

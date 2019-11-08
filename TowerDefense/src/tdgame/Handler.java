@@ -1,5 +1,6 @@
 package tdgame;
 
+import tdgame.input.KeyManager;
 import tdgame.input.MouseManager;
 import tdgame.worlds.World;
 
@@ -15,6 +16,11 @@ public class Handler {
 	public MouseManager getMouseManager()
 	{
 		return game.getMouseManager();
+	}
+	
+	public KeyManager getKeyManager()
+	{
+		return game.getKeyManager();
 	}
 	
 	public int getWidth() {
