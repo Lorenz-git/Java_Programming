@@ -19,16 +19,23 @@ public class World {
 	
 	public void tick() {
 		if(handler.getMouseManager().isLeftPressed()) {
-			if(handler.getKeyManager().getKeys()[KeyEvent.VK_1]==true) {
-				placeTile(0);
+			try {
+				if(handler.getKeyManager().getKeys()[KeyEvent.VK_1]==true) {
+					placeTile(0);
+				}
+				else if(handler.getKeyManager().getKeys()[KeyEvent.VK_2]==true) {
+					placeTile(1);
+				}
+				else if(handler.getKeyManager().getKeys()[KeyEvent.VK_3]==true) {
+					placeTile(2);
+				}
+				else if(handler.getKeyManager().getKeys()[KeyEvent.VK_4]==true) {
+					placeTile(3);
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			else if(handler.getKeyManager().getKeys()[KeyEvent.VK_2]==true) {
-				placeTile(1);
-			}
-			else if(handler.getKeyManager().getKeys()[KeyEvent.VK_3]==true) {
-				placeTile(2);
-			}
-			
 		}
 	}
 	

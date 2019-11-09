@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 	
-	private static final int width = 32, height = 32;
+	private static final int width = 128, height = 128;
 	
 	public static BufferedImage grass, rock, path, empty;
 

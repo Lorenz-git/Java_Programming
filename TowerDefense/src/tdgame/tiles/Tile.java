@@ -13,7 +13,7 @@ public class Tile {
 	public static Tile emptyTile = new EmptyTile(3);
 	
 	//CLASS
-	public static final int TILEWIDTH = 32, TILEHEIGHT = 32;
+	public static final int TILEWIDTH = 48, TILEHEIGHT = 48;
 	
 	protected BufferedImage texture;
 	protected final int id;
