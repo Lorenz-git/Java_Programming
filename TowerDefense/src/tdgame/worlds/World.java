@@ -1,6 +1,7 @@
 package tdgame.worlds;
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 import tdgame.Handler;
@@ -17,7 +18,18 @@ public class World {
 	}
 	
 	public void tick() {
-		
+		if(handler.getMouseManager().isLeftPressed()) {
+			if(handler.getKeyManager().getKeys()[KeyEvent.VK_1]==true) {
+				placeTile(0);
+			}
+			else if(handler.getKeyManager().getKeys()[KeyEvent.VK_2]==true) {
+				placeTile(1);
+			}
+			else if(handler.getKeyManager().getKeys()[KeyEvent.VK_3]==true) {
+				placeTile(2);
+			}
+			
+		}
 	}
 	
 	public void render(Graphics g) {
@@ -38,8 +50,8 @@ public class World {
 	}
 	
 	private void loadWorld(String path) {
-		width = 5;
-		height = 5;
+		width = 20;
+		height = 15;
 		worldTiles = new int[width][height];
 		
 		for(int x = 0; x < width; ++x) {
@@ -49,8 +61,8 @@ public class World {
 		}
 	}
 	
-	public void placeTile(MouseEvent e) {
-		
+	public void placeTile(int x) {
+		worldTiles[handler.getMouseManager().getMouseX()/Tile.TILEWIDTH][handler.getMouseManager().getMouseY()/Tile.TILEHEIGHT] = x;
 	}
 	
 	

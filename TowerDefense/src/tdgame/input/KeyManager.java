@@ -24,4 +24,8 @@ public class KeyManager implements KeyListener{
 		keys[e.getKeyCode()]=false;
 		
 	}
+	
+	public boolean[] getKeys(){
+		return keys;
+	}
 }

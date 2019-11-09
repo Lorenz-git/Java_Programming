@@ -4,13 +4,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import tdgame.Handler;
+
 public class MouseManager implements MouseListener, MouseMotionListener{
 
 	private boolean leftPressed, rightPressed;
 	private int mouseX, mouseY;
 	
+	
 	public MouseManager() {
-		
+
 	}
 	//GETTERS
 	
@@ -59,11 +62,13 @@ public class MouseManager implements MouseListener, MouseMotionListener{
 
 	public void mouseReleased(MouseEvent e) {
 		if(e.getButton()==MouseEvent.BUTTON1) {
-			leftPressed=false;
+			leftPressed=false;	
 		}
 		else if(e.getButton()==MouseEvent.BUTTON3) {
 			rightPressed=false;
 		}
+		
+		
 		
 	}
 

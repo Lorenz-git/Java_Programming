@@ -23,7 +23,7 @@ public class GameState extends State{
 	public void render(Graphics g) {
 		
 		world.render(g);
-
+		
 	}
 
 }
