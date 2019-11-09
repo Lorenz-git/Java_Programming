@@ -61,6 +61,10 @@ public class World {
 		}
 	}
 	
+	private void saveWorld(String path) {
+		
+	}
+	
 	public void placeTile(int x) {
 		worldTiles[handler.getMouseManager().getMouseX()/Tile.TILEWIDTH][handler.getMouseManager().getMouseY()/Tile.TILEHEIGHT] = x;
 	}
