@@ -2,15 +2,18 @@ package tdgame.worlds;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 import tdgame.Handler;
 import tdgame.tiles.Tile;
+import tdgame.utils.Utils;
 
 public class World {
 	private Handler handler;
 	private int height, width;
 	private int[][] worldTiles;
+	private int entryX, entryY, exitX, exitY;
 	
 	public World(Handler handler, String path) {
 		this.handler = handler;
@@ -57,13 +60,21 @@ public class World {
 	}
 	
 	private void loadWorld(String path) {
-		width = 20;
-		height = 15;
-		worldTiles = new int[width][height];
+		String file = Utils.loadFileAsString(path);
+		String[] tokens = file.split("\\s+");
 		
+		width = Utils.parseInt(tokens[0]);
+		height = Utils.parseInt(tokens[1]);
+		
+		entryX = Utils.parseInt(tokens[2]);
+		entryY = Utils.parseInt(tokens[3]);
+		exitX = Utils.parseInt(tokens[4]);
+		exitY = Utils.parseInt(tokens[5]);
+		
+		worldTiles = new int[width][height];
 		for(int x = 0; x < width; ++x) {
 			for(int y = 0; y < height; ++y) {
-				worldTiles[x][y] = 3;
+				worldTiles[x][y] = Utils.parseInt(tokens[(x+y*width)+6]);
 			}
 		}
 	}

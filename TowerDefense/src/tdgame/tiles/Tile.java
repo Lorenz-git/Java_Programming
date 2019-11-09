@@ -7,10 +7,10 @@ public class Tile {
 	//STATIC STUFF HERE
 	
 	public static Tile[] tiles = new Tile[256]; //all different tiles
-	public static Tile grassTile = new GrassTile(0);
-	public static Tile rockTile = new RockTile(1);
-	public static Tile pathTile = new PathTile(2);
-	public static Tile emptyTile = new EmptyTile(3);
+	public static Tile grassTile = new GrassTile(1);
+	public static Tile rockTile = new RockTile(2);
+	public static Tile pathTile = new PathTile(3);
+	public static Tile emptyTile = new EmptyTile(0);
 	
 	//CLASS
 	public static final int TILEWIDTH = 48, TILEHEIGHT = 48;
