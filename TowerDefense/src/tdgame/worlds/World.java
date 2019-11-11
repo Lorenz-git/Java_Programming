@@ -40,6 +40,9 @@ public class World {
 				e.printStackTrace();
 			}
 		}
+		if(handler.getKeyManager().getKeys()[KeyEvent.VK_S]&&handler.getKeyManager().getKeys()[KeyEvent.VK_CONTROL]) {
+			Utils.writeFileFromWorld("res/worlds/world2.txt", handler);
+		}
 	}
 	
 	public void render(Graphics g) {
@@ -79,13 +82,71 @@ public class World {
 		}
 	}
 	
-	private void saveWorld(String path) {
-		
+	public void saveWorld(String path, Handler handler) {
+		Utils.writeFileFromWorld(path, handler);
 	}
 	
 	public void placeTile(int x) {
 		worldTiles[handler.getMouseManager().getMouseX()/Tile.TILEWIDTH][handler.getMouseManager().getMouseY()/Tile.TILEHEIGHT] = x;
 	}
+	
+	//GETTERS AND SETTERS
+	
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getEntryX() {
+		return entryX;
+	}
+
+	public void setEntryX(int entryX) {
+		this.entryX = entryX;
+	}
+
+	public int getEntryY() {
+		return entryY;
+	}
+
+	public void setEntryY(int entryY) {
+		this.entryY = entryY;
+	}
+
+	public int getExitX() {
+		return exitX;
+	}
+
+	public void setExitX(int exitX) {
+		this.exitX = exitX;
+	}
+
+	public int getExitY() {
+		return exitY;
+	}
+
+	public void setExitY(int exitY) {
+		this.exitY = exitY;
+	}
+	
+	public int[][] getWorldTiles() {
+		return worldTiles;
+	}
+
+
+
+	
 	
 	
 }

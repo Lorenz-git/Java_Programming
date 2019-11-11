@@ -3,6 +3,8 @@ package tdgame.input;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import tdgame.Handler;
+
 public class KeyManager implements KeyListener{
 	private boolean[] keys;
 	
@@ -10,14 +12,14 @@ public class KeyManager implements KeyListener{
 		keys = new boolean[256];
 	}
 
+
 	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	public void keyPressed(KeyEvent e) {
-		keys[e.getKeyCode()]=true;
-		
+		keys[e.getKeyCode()]=true;		
 	}
 
 	public void keyReleased(KeyEvent e) {
