@@ -4,12 +4,15 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import tdgame.Handler;
+import tdgame.utils.Utils;
 
 public class KeyManager implements KeyListener{
+	private Handler handler;
 	private boolean[] keys;
 	
-	public KeyManager() {
+	public KeyManager(Handler handler) {
 		keys = new boolean[256];
+		this.handler = handler;
 	}
 
 
@@ -19,7 +22,12 @@ public class KeyManager implements KeyListener{
 	}
 
 	public void keyPressed(KeyEvent e) {
-		keys[e.getKeyCode()]=true;		
+		keys[e.getKeyCode()]=true;
+		
+		
+		if(keys[KeyEvent.VK_S]&&keys[KeyEvent.VK_CONTROL]) {
+			Utils.writeFileFromWorld("res/worlds/world2.txt", handler);
+		}
 	}
 
 	public void keyReleased(KeyEvent e) {

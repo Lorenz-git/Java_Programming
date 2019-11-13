@@ -1,19 +1,23 @@
 package tdgame.input;
 
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import tdgame.Handler;
+import tdgame.utils.Utils;
 
 public class MouseManager implements MouseListener, MouseMotionListener{
+	
+	private Handler handler;
 
 	private boolean leftPressed, rightPressed;
 	private int mouseX, mouseY;
 	
 	
-	public MouseManager() {
-
+	public MouseManager(Handler handler) {
+		this.handler= handler;
 	}
 	//GETTERS
 	
@@ -46,8 +50,20 @@ public class MouseManager implements MouseListener, MouseMotionListener{
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		if(e.getButton()== MouseEvent.BUTTON1) {
+			if(handler.getKeyManager().getKeys()[KeyEvent.VK_1]==true) {
+				handler.getWorld().placeTile(0);
+			}
+			else if(handler.getKeyManager().getKeys()[KeyEvent.VK_2]==true) {
+				handler.getWorld().placeTile(1);
+			}
+			else if(handler.getKeyManager().getKeys()[KeyEvent.VK_3]==true) {
+				handler.getWorld().placeTile(2);
+			}
+			else if(handler.getKeyManager().getKeys()[KeyEvent.VK_4]==true) {
+				handler.getWorld().placeTile(3);
+			}
+		}
 	}
 
 	public void mousePressed(MouseEvent e) {
@@ -67,9 +83,6 @@ public class MouseManager implements MouseListener, MouseMotionListener{
 		else if(e.getButton()==MouseEvent.BUTTON3) {
 			rightPressed=false;
 		}
-		
-		
-		
 	}
 
 	public void mouseEntered(MouseEvent e) {

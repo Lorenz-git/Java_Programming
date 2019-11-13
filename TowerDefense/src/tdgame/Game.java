@@ -37,13 +37,17 @@ public class Game implements Runnable {
 		this.width = width;
 		this.height = height;
 		this.title = title;
-		keyManager = new KeyManager();
-		mouseManager = new MouseManager();
+		
+		handler = new Handler(this);
+		keyManager = new KeyManager(handler);
+		mouseManager = new MouseManager(handler);
+		
 	}
 	
 	private void init(){
-		display = new Display(title, width, height);
 		
+		
+		display = new Display(title, width, height);
 		display.getFrame().addKeyListener(keyManager);
 		display.getCanvas().addKeyListener(keyManager);
 		
@@ -54,7 +58,6 @@ public class Game implements Runnable {
 		
 		Assets.init();
 		
-		handler = new Handler(this);
 		
 		//States
 		gameState = new GameState(handler);
