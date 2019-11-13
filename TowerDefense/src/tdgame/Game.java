@@ -63,12 +63,10 @@ public class Game implements Runnable {
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
 		mapEditorState = new MapEditorState(handler);
-		State.setState(mapEditorState);
+		State.setState(gameState);
 	}
 	
-	
-	
-
+	//TICK KEYMANAGER MOUSEMANAGER AND CURRENT STATE
 	private void tick(){
 		keyManager.tick();
 		mouseManager.tick();
@@ -77,6 +75,7 @@ public class Game implements Runnable {
 		}
 	}
 	
+	//RENDER CURRENT STATE
 	private void render(){
 		bs = display.getCanvas().getBufferStrategy();
 		if(bs == null){
@@ -128,12 +127,8 @@ public class Game implements Runnable {
 				timer = 0;
 			}
 		}
-		
 		stop();
-		
 	}
-	
-	
 	
 	public synchronized void start(){
 		if(running)
@@ -153,6 +148,7 @@ public class Game implements Runnable {
 			e.printStackTrace();
 		}
 	}
+	
 	//GETTERS AND SETTERS
 	public int getWidth() {
 		return width;

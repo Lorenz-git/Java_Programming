@@ -1,9 +1,8 @@
-package tdgame.entities.creatures;
+package tdgame.entities;
 
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import tdgame.Handler;
-import tdgame.entities.Entity;
 import tdgame.gfx.Assets;
 
 public class Creature extends Entity{

@@ -3,7 +3,8 @@ package tdgame.states;
 import java.awt.Graphics;
 
 import tdgame.Handler;
-import tdgame.entities.creatures.Creature;
+import tdgame.entities.Creature;
+import tdgame.tiles.Tile;
 import tdgame.worlds.World;
 
 public class GameState extends State{
@@ -20,7 +21,7 @@ public class GameState extends State{
 		handler.setWorld(world);
 		this.handler = handler;
 		
-		creature = new Creature(handler, 300, 300);
+		creature = new Creature(handler, world.getEntryX()*Tile.TILEWIDTH, world.getEntryY()*Tile.TILEHEIGHT);
 	}
 	
 	public void tick() {

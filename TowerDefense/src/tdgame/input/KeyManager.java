@@ -29,6 +29,7 @@ public class KeyManager implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		keys[e.getKeyCode()]=true;
 		
+		//MAP EDITOR KEYBOARD CONTROLS
 		if(State.getState() instanceof tdgame.states.MapEditorState) {
 			//SAVE CURRENT WORLD
 			if(keys[KeyEvent.VK_S]&&keys[KeyEvent.VK_CONTROL]) {

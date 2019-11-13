@@ -38,7 +38,6 @@ public class World {
 			return Tile.emptyTile;
 		}
 		return t;
-		
 	}
 	
 	private void loadWorld(String path) {

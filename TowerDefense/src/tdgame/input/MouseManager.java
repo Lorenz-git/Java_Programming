@@ -51,6 +51,8 @@ public class MouseManager implements MouseListener, MouseMotionListener{
 	}
 
 	public void mouseClicked(MouseEvent e) {
+		
+		//MAP EDITOR MOUSE CONTROLS
 		if(State.getState() instanceof tdgame.states.MapEditorState) {		
 			//EDIT TILES
 			if(e.getButton()== MouseEvent.BUTTON1) { 
