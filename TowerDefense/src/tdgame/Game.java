@@ -8,6 +8,7 @@ import tdgame.gfx.Assets;
 import tdgame.input.KeyManager;
 import tdgame.input.MouseManager;
 import tdgame.states.GameState;
+import tdgame.states.MapEditorState;
 import tdgame.states.MenuState;
 import tdgame.states.State;
 
@@ -30,6 +31,7 @@ public class Game implements Runnable {
 	//States
 	public State gameState;
 	public State menuState;
+	public State mapEditorState;
 	
 	private Handler handler;
 	
@@ -44,9 +46,7 @@ public class Game implements Runnable {
 		
 	}
 	
-	private void init(){
-		
-		
+	private void init() {
 		display = new Display(title, width, height);
 		display.getFrame().addKeyListener(keyManager);
 		display.getCanvas().addKeyListener(keyManager);
@@ -62,36 +62,16 @@ public class Game implements Runnable {
 		//States
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
-		State.setState(gameState);
+		mapEditorState = new MapEditorState(handler);
+		State.setState(mapEditorState);
 	}
 	
 	
-	public int getWidth() {
-		return width;
-	}
-
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
-	public int getHeight() {
-		return height;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
-	}
 	
-	public MouseManager getMouseManager() {
-		return mouseManager;
-	}
-	
-	public KeyManager getKeyManager() {
-		return keyManager;
-	}
 
 	private void tick(){
-
+		keyManager.tick();
+		mouseManager.tick();
 		if(State.getState()!=null) {
 			State.getState().tick();
 		}
@@ -172,6 +152,30 @@ public class Game implements Runnable {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	//GETTERS AND SETTERS
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+	
+	public MouseManager getMouseManager() {
+		return mouseManager;
+	}
+	
+	public KeyManager getKeyManager() {
+		return keyManager;
 	}
 	
 }

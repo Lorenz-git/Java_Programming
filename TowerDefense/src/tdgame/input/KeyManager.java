@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import tdgame.Handler;
+import tdgame.states.State;
 import tdgame.utils.Utils;
 
 public class KeyManager implements KeyListener{
@@ -13,6 +14,10 @@ public class KeyManager implements KeyListener{
 	public KeyManager(Handler handler) {
 		keys = new boolean[256];
 		this.handler = handler;
+	}
+	
+	public void tick() {
+		
 	}
 
 
@@ -24,9 +29,11 @@ public class KeyManager implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		keys[e.getKeyCode()]=true;
 		
-		
-		if(keys[KeyEvent.VK_S]&&keys[KeyEvent.VK_CONTROL]) {
-			Utils.writeFileFromWorld("res/worlds/world2.txt", handler);
+		if(State.getState() instanceof tdgame.states.MapEditorState) {
+			//SAVE CURRENT WORLD
+			if(keys[KeyEvent.VK_S]&&keys[KeyEvent.VK_CONTROL]) {
+				Utils.writeFileFromWorld("res/worlds/world2.txt", handler);
+			}
 		}
 	}
 

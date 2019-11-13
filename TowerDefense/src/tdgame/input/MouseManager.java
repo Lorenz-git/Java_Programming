@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import tdgame.Handler;
+import tdgame.states.State;
 import tdgame.utils.Utils;
 
 public class MouseManager implements MouseListener, MouseMotionListener{
@@ -50,18 +51,21 @@ public class MouseManager implements MouseListener, MouseMotionListener{
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		if(e.getButton()== MouseEvent.BUTTON1) {
-			if(handler.getKeyManager().getKeys()[KeyEvent.VK_1]==true) {
-				handler.getWorld().placeTile(0);
-			}
-			else if(handler.getKeyManager().getKeys()[KeyEvent.VK_2]==true) {
-				handler.getWorld().placeTile(1);
-			}
-			else if(handler.getKeyManager().getKeys()[KeyEvent.VK_3]==true) {
-				handler.getWorld().placeTile(2);
-			}
-			else if(handler.getKeyManager().getKeys()[KeyEvent.VK_4]==true) {
-				handler.getWorld().placeTile(3);
+		if(State.getState() instanceof tdgame.states.MapEditorState) {		
+			//EDIT TILES
+			if(e.getButton()== MouseEvent.BUTTON1) { 
+				if(handler.getKeyManager().getKeys()[KeyEvent.VK_1]==true) {
+					handler.getWorld().placeTile(0);
+				}
+				else if(handler.getKeyManager().getKeys()[KeyEvent.VK_2]==true) {
+					handler.getWorld().placeTile(1);
+				}
+				else if(handler.getKeyManager().getKeys()[KeyEvent.VK_3]==true) {
+					handler.getWorld().placeTile(2);
+				}
+				else if(handler.getKeyManager().getKeys()[KeyEvent.VK_4]==true) {
+					handler.getWorld().placeTile(3);
+				}
 			}
 		}
 	}
@@ -91,6 +95,11 @@ public class MouseManager implements MouseListener, MouseMotionListener{
 	}
 
 	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void tick() {
 		// TODO Auto-generated method stub
 		
 	}
