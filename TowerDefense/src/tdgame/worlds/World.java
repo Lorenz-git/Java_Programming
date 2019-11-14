@@ -68,6 +68,10 @@ public class World {
 		worldTiles[handler.getMouseManager().getMouseX()/Tile.TILEWIDTH][handler.getMouseManager().getMouseY()/Tile.TILEHEIGHT] = x;
 	}
 	
+	public Level createLevel() {
+		return new Level(this);
+	}
+	
 	//GETTERS AND SETTERS
 	
 	public int getHeight() {
