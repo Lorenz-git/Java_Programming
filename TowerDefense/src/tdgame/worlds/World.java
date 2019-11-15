@@ -4,6 +4,8 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import tdgame.Handler;
@@ -51,7 +53,7 @@ public class World {
 		return t;
 	}
 	
-	private void loadWorld(String path) {
+	public void loadWorld(String path) {
 		String file = Utils.loadFileAsString(path);
 		String[] tokens = file.split("\\s+");
 		
@@ -76,8 +78,29 @@ public class World {
 		worldPath = points.toArray(new Point[points.size()]);
 	}
 	
-	public void saveWorld(String path, Handler handler) {
-		Utils.writeFileFromWorld(path, handler);
+	public void saveWorld(String path) {
+		try {
+			PrintWriter writer = new PrintWriter(path);
+			writer.println(width + " " + height); 
+			writer.println(entryX + " " + entryY);
+			writer.println(entryX + " " + entryY);
+			for(int y = 0; y < height; ++y) {
+				String line = "";
+				for(int x = 0; x < width; ++x) {
+					line= line+ worldTiles[x][y]+ " ";
+				}
+				writer.println(line);
+			}
+			String pathString = "";
+			for(Point p : worldPath) {
+				pathString += p.getX()+" "+p.getY()+" ";
+			}
+			writer.println(pathString);
+			
+			writer.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void placeTile(int x) {

@@ -15,6 +15,8 @@ import tdgame.states.State;
 public class Game implements Runnable {
 
 	private Display display;
+	
+
 	public int width, height;
 	public String title;
 	
@@ -63,7 +65,7 @@ public class Game implements Runnable {
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
 		mapEditorState = new MapEditorState(handler);
-		State.setState(gameState);
+		State.setState(mapEditorState);
 	}
 	
 	//TICK KEYMANAGER MOUSEMANAGER AND CURRENT STATE
@@ -172,6 +174,10 @@ public class Game implements Runnable {
 	
 	public KeyManager getKeyManager() {
 		return keyManager;
+	}
+	
+	public Display getDisplay() {
+		return display;
 	}
 	
 }

@@ -35,29 +35,4 @@ public class Utils {
 		}
 	}
 
-	public static void writeFileFromWorld(String path, Handler handler) {
-		try {
-			PrintWriter writer = new PrintWriter(path);
-			writer.println(handler.getWorld().getWidth() + " " + handler.getWorld().getHeight()); 
-			writer.println(handler.getWorld().getEntryX() + " " + handler.getWorld().getEntryY());
-			writer.println(handler.getWorld().getExitX() + " " + handler.getWorld().getExitY());
-			for(int y = 0; y < handler.getWorld().getHeight(); ++y) {
-				String line = "";
-				for(int x = 0; x < handler.getWorld().getWidth(); ++x) {
-					line= line+ handler.getWorld().getWorldTiles()[x][y]+ " ";
-				}
-				writer.println(line);
-			}
-			String worldPath = "";
-			for(Point p : handler.getWorld().getWorldPath()) {
-				worldPath += p.getX()+" "+p.getY()+" ";
-			}
-			writer.println(worldPath);
-			
-			writer.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-	}
 }

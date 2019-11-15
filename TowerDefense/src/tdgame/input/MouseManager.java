@@ -69,6 +69,8 @@ public class MouseManager implements MouseListener, MouseMotionListener{
 					handler.getWorld().placeTile(3);
 				}
 			}
+			
+
 		}
 	}
 

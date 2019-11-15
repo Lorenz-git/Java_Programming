@@ -1,7 +1,9 @@
 package tdgame.input;
 
+import java.awt.FileDialog;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 
 import tdgame.Handler;
 import tdgame.states.State;
@@ -33,7 +35,27 @@ public class KeyManager implements KeyListener{
 		if(State.getState() instanceof tdgame.states.MapEditorState) {
 			//SAVE CURRENT WORLD
 			if(keys[KeyEvent.VK_S]&&keys[KeyEvent.VK_CONTROL]) {
-				Utils.writeFileFromWorld("res/worlds/world2.txt", handler);
+				FileDialog fd = new FileDialog(handler.getGame().getDisplay().getFrame(), "Select where to save the map", FileDialog.SAVE);
+				fd.setDirectory("C:\\");
+				fd.setFile("*.txt");
+				fd.setVisible(true);
+				String filename = fd.getDirectory() + fd.getFile();
+				handler.getWorld().saveWorld(filename);
+				
+				keys[KeyEvent.VK_S]=false;
+				keys[KeyEvent.VK_CONTROL]=false;
+			}
+			//LOAD WORLD
+			if(keys[KeyEvent.VK_O]&&keys[KeyEvent.VK_CONTROL]) {
+				FileDialog fd = new FileDialog(handler.getGame().getDisplay().getFrame(), "Choose a map to load", FileDialog.LOAD);
+				fd.setDirectory("C:\\");
+				fd.setFile("*.txt");
+				fd.setVisible(true);
+				String filename = fd.getDirectory() + fd.getFile();
+				handler.getWorld().loadWorld(filename);
+				
+				keys[KeyEvent.VK_O]=false;
+				keys[KeyEvent.VK_CONTROL]=false;
 			}
 		}
 	}

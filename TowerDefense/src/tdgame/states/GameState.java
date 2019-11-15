@@ -27,7 +27,6 @@ public class GameState extends State{
 	public void tick() {
 		world.tick();
 		creature.tick();
-		
 	}
 
 	public void render(Graphics g) {
