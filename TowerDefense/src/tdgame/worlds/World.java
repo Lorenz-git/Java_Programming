@@ -1,12 +1,14 @@
 package tdgame.worlds;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.KeyEvent;
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.awt.Graphics2D;
+import java.util.ArrayList;
 
 import tdgame.Handler;
 import tdgame.tiles.Tile;
+import tdgame.utils.Point;
 import tdgame.utils.Utils;
 
 public class World {
@@ -14,6 +16,7 @@ public class World {
 	private int height, width;
 	private int[][] worldTiles;
 	private int entryX, entryY, exitX, exitY;
+	private Point[] worldPath;
 	
 	public World(Handler handler, String path) {
 		this.handler = handler;
@@ -29,6 +32,14 @@ public class World {
 			for(int x = 0; x < width; ++x) {
 				getTile(x,y).render(g, x*Tile.TILEWIDTH, y*Tile.TILEHEIGHT);
 			}
+		}
+
+		g.setColor(Color.black);
+		for(int i = 1; i < worldPath.length; ++i) {
+			g.drawLine((int)(worldPath[i-1].getX()*Tile.TILEWIDTH+0.5*Tile.TILEWIDTH), 
+					   (int)(worldPath[i-1].getY()*Tile.TILEWIDTH+0.5*Tile.TILEWIDTH),
+					   (int)(worldPath[i].getX()*Tile.TILEHEIGHT+0.5*Tile.TILEHEIGHT),
+					   (int)(worldPath[i].getY()*Tile.TILEHEIGHT+0.5*Tile.TILEHEIGHT));
 		}
 	}
 	
@@ -58,6 +69,11 @@ public class World {
 				worldTiles[x][y] = Utils.parseInt(tokens[(x+y*width)+6]);
 			}
 		}
+		ArrayList<Point> points = new ArrayList<Point>();
+		for(int i = width * height + 6; i < tokens.length; i += 2) {
+			points.add(new Point(Utils.parseInt(tokens[i]), Utils.parseInt(tokens[i+1])));
+		}
+		worldPath = points.toArray(new Point[points.size()]);
 	}
 	
 	public void saveWorld(String path, Handler handler) {
@@ -124,6 +140,14 @@ public class World {
 	
 	public int[][] getWorldTiles() {
 		return worldTiles;
+	}
+
+	public Point[] getWorldPath() {
+		return worldPath;
+	}
+
+	public void setWorldPath(Point[] path) {
+		this.worldPath = path;
 	}
 
 

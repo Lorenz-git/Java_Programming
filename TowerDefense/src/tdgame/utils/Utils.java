@@ -48,6 +48,12 @@ public class Utils {
 				}
 				writer.println(line);
 			}
+			String worldPath = "";
+			for(Point p : handler.getWorld().getWorldPath()) {
+				worldPath += p.getX()+" "+p.getY()+" ";
+			}
+			writer.println(worldPath);
+			
 			writer.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
